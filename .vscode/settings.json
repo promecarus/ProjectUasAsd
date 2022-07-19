@@ -3,6 +3,10 @@
         "*.html": "html",
         "*.css": "css",
         "iostream": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "ios": "cpp",
+        "string": "cpp",
+        "iomanip": "cpp",
+        "xiosbase": "cpp"
     }
 }
