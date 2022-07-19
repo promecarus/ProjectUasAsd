@@ -99,8 +99,6 @@ void enqueue() {
         // penginputan field nama dan id oleh user
         cin.ignore();
         cout << "Nama : ";
-        // cin >> newNode->nama;
-        // cin >> newNode->nama;
         getline(cin, newNode->nama);
 
         cout << "ID   : ";
