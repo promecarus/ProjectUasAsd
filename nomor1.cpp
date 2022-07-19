@@ -28,14 +28,22 @@ int maksimal = 5;
 // pointer
 Pasien *head, *tail, *cur, *del, *newNode;
 
-// waktu kedatangan
+// nomor urut
 int nomorUrutCounter = 0;
+
+// rata-rata waktu pemeriksaan
+int meanWaktuPemeriksaan = 20;
 
 // border menu
 void tampilanMenu() {
     int lebarTabel = 34;
-    string menu[] = {"[0] Keluar", "[1] Tambah Antrean", "[2] Panggil Pasien",
-                     "[3] Lihat List Antrean", "[4] Bersihkan List Antrean"};
+    string menu[] = {
+        "[1] Tambah Antrean",
+        "[2] Panggil Pasien",
+        "[3] Lihat List Antrean",
+        "[4] Bersihkan List Antrean",
+        "[5] Keluar",
+    };
     cout << "\n"
          << setfill('-') << setw(lebarTabel) << left << "+-"
          << "+\n";
@@ -55,13 +63,13 @@ void tampilanMenu() {
 }
 
 bool konfirmasiKeluar() {
-    system("cls");
+    // system("cls");
     bool hasil;
     string input;
     cout << "Apakah anda yakin? [y/n]: ";
     cin >> input;
     if (tolower(input[0]) == 'y') {
-        system("cls");
+        // system("cls");
         cout << "Terima kasih telah menggunakan aplikasi ini.";
         hasil = true;
     }
@@ -90,7 +98,7 @@ bool isEmpty() { return (count() == 0); }
 
 // enqueue
 void enqueue() {
-    // system("cls");
+    cout << "Tambah Antrean" << endl;
     if (isFull()) {
         cout << "Antrean penuh." << endl;
     } else {
@@ -125,6 +133,42 @@ void enqueue() {
             tail->next = newNode;
             tail = newNode;
         }
+        int ruasTabelEnqueue[] = {19, 28};
+        system("cls");
+        cout << setfill('-') << setw(ruasTabelEnqueue[0] + ruasTabelEnqueue[1])
+             << left << "+-"
+             << "+\n";
+        cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 12)
+             << "Antrean"
+             << " " << left << setw(ruasTabelEnqueue[1] + 9) << count()
+             << "|\n";
+        cout << setfill('-') << setw(ruasTabelEnqueue[0] + ruasTabelEnqueue[1])
+             << left << "+-"
+             << "+\n";
+        cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
+             << "Nama"
+             << "| " << left << setw(ruasTabelEnqueue[1] - 2) << newNode->nama
+             << "|\n";
+        cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
+             << "Nomor ID"
+             << "| " << left << setw(ruasTabelEnqueue[1] - 2) << newNode->id
+             << "|\n";
+        cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
+             << "Nomor Urut"
+             << "| " << left << setw(ruasTabelEnqueue[1] - 2)
+             << newNode->nomorUrut << "|\n";
+        cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
+             << "Waktu Kedatangan"
+             << "| " << left << setw(ruasTabelEnqueue[1] - 2)
+             << newNode->waktuKedatangan << "|\n";
+        cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
+             << "Estimasi Tunggu"
+             << "| " << left << setw(ruasTabelEnqueue[1] - 2)
+             << (count() * meanWaktuPemeriksaan) - meanWaktuPemeriksaan
+             << "|\n";
+        cout << setfill('-') << setw(ruasTabelEnqueue[0]) << left << "+-"
+             << setw(ruasTabelEnqueue[1]) << left << "+-"
+             << "+\n";
     }
 }
 
@@ -133,9 +177,37 @@ void dequeue() {
     if (isEmpty()) {
         cout << "Antrean kosong." << endl;
     } else {
+        int ruasTabelDequeue[] = {19, 28};
         del = head;
         head = head->next;
         del->next = NULL;
+        
+        system("cls");
+        cout << setfill('-') << setw(ruasTabelDequeue[0] + ruasTabelDequeue[1])
+             << left << "+-"
+             << "+\n";
+        cout << setfill(' ') << "| " << left
+             << setw(ruasTabelDequeue[0] + ruasTabelDequeue[1] -2) << "Pemanggilan Pasien"
+             << "|\n";
+        cout << setfill('-') << setw(ruasTabelDequeue[0]) << left << "+-"
+             << setw(ruasTabelDequeue[1]) << left << "+-"
+             << "+\n";
+        cout << setfill(' ') << "| " << left << setw(ruasTabelDequeue[0] - 2)
+             << "Nama"
+             << "| " << left << setw(ruasTabelDequeue[1] - 2) << del->nama
+             << "|\n";
+        cout << setfill(' ') << "| " << left << setw(ruasTabelDequeue[0] - 2)
+             << "Nomor ID"
+             << "| " << left << setw(ruasTabelDequeue[1] - 2) << del->id
+             << "|\n";
+        cout << setfill(' ') << "| " << left << setw(ruasTabelDequeue[0] - 2)
+             << "Nomor Urut"
+             << "| " << left << setw(ruasTabelDequeue[1] - 2)
+             << del->nomorUrut << "|\n";
+        cout << setfill('-') << setw(ruasTabelDequeue[0]) << left << "+-"
+             << setw(ruasTabelDequeue[1]) << left << "+-"
+             << "+\n";
+
         delete del;
     }
 }
@@ -222,15 +294,12 @@ void clear() {
 void menu() {
     bool isStay = true;
     while (isStay) {
-        // system("cls");
         int inputOpsi;
         tampilanMenu();
         cin >> inputOpsi;
+        system("cls");
 
         switch (inputOpsi) {
-            case 0:
-                isStay = konfirmasiKeluar();
-                break;
             case 1:
                 enqueue();
                 break;
@@ -243,6 +312,9 @@ void menu() {
             case 4:
                 clear();
                 break;
+            case 5:
+                isStay = konfirmasiKeluar();
+                break;
             default:
                 cout << "Opsi yang anda masukkan tidak valid." << endl;
                 break;
@@ -252,6 +324,6 @@ void menu() {
 
 int main() {
     menu();
-    display();
+
     return 0;
 }
