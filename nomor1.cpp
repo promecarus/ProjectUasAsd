@@ -8,7 +8,6 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
-#include <string>
 
 using namespace std;
 
@@ -62,16 +61,23 @@ void tampilanMenu() {
     cout << "Input Anda: ";
 }
 
+// konfirmasi
 bool konfirmasiKeluar() {
-    // system("cls");
+    system("cls");
+    
     bool hasil;
     string input;
-    cout << "Apakah anda yakin? [y/n]: ";
+
+    cout << "Apakah anda yakin ingin keluar? [y/n]: ";
     cin >> input;
     if (tolower(input[0]) == 'y') {
-        // system("cls");
+        system("cls");
         cout << "Terima kasih telah menggunakan aplikasi ini.";
         hasil = true;
+    } else if (tolower(input[0]) == 'n') {
+        cout << "Batal keluar dari aplikasi.";
+    } else {
+        cout << "Input tidak valid. Kembali ke menu.";
     }
     return !hasil;
 }
@@ -102,7 +108,7 @@ void enqueue() {
     if (isFull()) {
         cout << "Antrean penuh." << endl;
     } else {
-        newNode = new Pasien();
+        newNode = new Pasien;
 
         // penginputan field nama dan id oleh user
         cin.ignore();
@@ -125,7 +131,7 @@ void enqueue() {
         // pengnullan field next
         newNode->next = NULL;
 
-        // penentuan head atau tail
+        // penentuan sebagai head atau tail
         if (isEmpty()) {
             head = newNode;
             tail = head;
@@ -133,7 +139,10 @@ void enqueue() {
             tail->next = newNode;
             tail = newNode;
         }
+
         int ruasTabelEnqueue[] = {19, 28};
+
+        //
         system("cls");
         cout << setfill('-') << setw(ruasTabelEnqueue[0] + ruasTabelEnqueue[1])
              << left << "+-"
@@ -181,13 +190,14 @@ void dequeue() {
         del = head;
         head = head->next;
         del->next = NULL;
-        
+
         system("cls");
         cout << setfill('-') << setw(ruasTabelDequeue[0] + ruasTabelDequeue[1])
              << left << "+-"
              << "+\n";
         cout << setfill(' ') << "| " << left
-             << setw(ruasTabelDequeue[0] + ruasTabelDequeue[1] -2) << "Pemanggilan Pasien"
+             << setw(ruasTabelDequeue[0] + ruasTabelDequeue[1] - 2)
+             << "Pemanggilan Pasien"
              << "|\n";
         cout << setfill('-') << setw(ruasTabelDequeue[0]) << left << "+-"
              << setw(ruasTabelDequeue[1]) << left << "+-"
@@ -202,8 +212,8 @@ void dequeue() {
              << "|\n";
         cout << setfill(' ') << "| " << left << setw(ruasTabelDequeue[0] - 2)
              << "Nomor Urut"
-             << "| " << left << setw(ruasTabelDequeue[1] - 2)
-             << del->nomorUrut << "|\n";
+             << "| " << left << setw(ruasTabelDequeue[1] - 2) << del->nomorUrut
+             << "|\n";
         cout << setfill('-') << setw(ruasTabelDequeue[0]) << left << "+-"
              << setw(ruasTabelDequeue[1]) << left << "+-"
              << "+\n";
@@ -287,6 +297,7 @@ void clear() {
         }
         head = NULL;
         tail = NULL;
+        cout << "Antrean berhasil dibersihkan." << endl;
     }
 }
 
@@ -324,6 +335,5 @@ void menu() {
 
 int main() {
     menu();
-
     return 0;
 }
