@@ -22,6 +22,9 @@ Node *head, *tail, *cur, *newNode, *del, *temp;
 // digit password
 int digitPassword = 6;
 
+// password sebelum dan sesudah
+string passwordSebelum, passwordSesudah;
+
 // push
 void push(char data) {
     Node *newNode = new Node;
@@ -68,6 +71,7 @@ void print(string pesan) {
 string input() {
     bool valid = false;
     string hasil;
+    passwordSebelum = "";
 
     while (!valid) {
         cout << "Masukkan password yang ingin dienkripsi [" << digitPassword
@@ -88,9 +92,12 @@ string input() {
         cout << endl;
     }
 
-    // pembentukan single linked list
+    // pembentukan single linked list & menyimpan password sebelum terenkripsi
     for (int i = 0; i < digitPassword; i++) {
         push(hasil[i]);
+
+        // penyimpanan password sebelum
+        passwordSebelum += hasil[i];
     }
 
     // menampilkan password
@@ -102,6 +109,7 @@ string input() {
 void enkripsi(string data) {
     bool check = false;
     int counter = 1;
+    passwordSesudah = "";
 
     int nilaiN;
 
@@ -128,40 +136,26 @@ void enkripsi(string data) {
         counter++;
     }
 
+    // proses pengenkripsian
     temp = head;
     head = cur->next;
     tail->next = temp;
     cur->next = NULL;
     tail = cur;
     print("\nPassword sesudah dienkripsi: ");
+
+    // traversing
+    cur = head;
+    while (cur != NULL) {
+        passwordSesudah += cur->data;
+        cur = cur->next;
+    }
 }
 
 int main() {
     bool lagi = true;
     bool valid = false;
     string konfirmasi;
-
-    // do {
-    //     enkripsi(input());
-    //     while (!valid) {
-    //         cout << "Enkripsi password lainnya? [y/n]: ";
-    //         cin >> konfirmasi;
-    //         if (tolower(konfirmasi[0]) == 'y') {
-    //             system("cls");
-    //             remove();
-    //             lagi = true;
-    //             valid = true;
-    //         } else if (tolower(konfirmasi[0]) == 'n') {
-    //             cout << "Terima kasih telah menggunakan aplikasi ini.";
-    //             lagi = false;
-    //             valid = true;
-    //         } else {
-    //             system("cls");
-    //             cout << "Input tidak valid." << endl;
-    //             valid = false;
-    //         }
-    //     }
-    // } while (lagi);
 
     while (lagi) {
         enkripsi(input());
@@ -174,7 +168,7 @@ int main() {
                 lagi = true;
                 valid = true;
             } else if (tolower(konfirmasi[0]) == 'n') {
-                cout << "Terima kasih telah menggunakan aplikasi ini.";
+                cout << "Terima kasih telah menggunakan aplikasi ini." << endl;
                 lagi = false;
                 valid = true;
             } else {
@@ -185,6 +179,8 @@ int main() {
         }
         valid = false;
     }
+    // cout << passwordSebelum << endl;
+    // cout << passwordSesudah << endl;
 
     return 0;
 }

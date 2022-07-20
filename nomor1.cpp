@@ -22,7 +22,7 @@ struct Pasien {
 };
 
 // maksimal
-int maksimal = 5;
+int maksimal = 50;
 
 // pointer
 Pasien *head, *tail, *cur, *del, *newNode;
@@ -142,7 +142,7 @@ void enqueue() {
 
         int ruasTabelEnqueue[] = {19, 28};
 
-        //
+        // pencetakan kartu antrian
         system("cls");
         cout << setfill('-') << setw(ruasTabelEnqueue[0] + ruasTabelEnqueue[1])
              << left << "+-"
