@@ -2,7 +2,7 @@
 // dengan spesifikasi : Panjang password 6 digit, Isi password terserah dari
 // user dan password diinputkan terlebih dahulu. Enkripsi dilakukan dengan
 // menukarkan n node terakhir, menjadi node terdepan. Kemudian sisipkan karakter
-// baru sebagai kunci (misal karakter @ ) setelah n node dari yang dipindahkan
+// baru sebagai kunci (misal karakter @) setelah n node dari yang dipindahkan
 // tersebut. Silahkan tentukan nilai n, dan boleh menambahkan asumsi pribadi.
 // Buatlah tampilan aplikasi semenarik mungkin
 
@@ -61,7 +61,7 @@ void print(string pesan) {
         cout << cur->data;
         cur = cur->next;
         if (cur != NULL) {
-            cout << " -> ";
+            cout << " >> ";
         }
     }
     cout << endl << endl;
@@ -81,11 +81,11 @@ string input() {
             valid = true;
         } else {
             system("cls");
-            cout << "Password yang Anda masukkan ";
+            cout << "Password yang Anda masukkan terlalu";
             if (hasil.length() < digitPassword) {
-                cout << "terlalu [pendek].";
+                cout << " [pendek].";
             } else {
-                cout << "terlalu [panjang].";
+                cout << " [panjang].";
             }
             cout << endl << endl;
         }
@@ -111,25 +111,27 @@ void enkripsi(string data) {
     int counter = 1;
     passwordSesudah = "";
 
-    int nilaiN;
+    int nilaiN = 4;
+    // int nilaiN;
+    // while (!check) {
+    //     cout << "Nilai n [ 0 < digit < " << digitPassword << " ] : ";
+    //     cin >> nilaiN;
+    //     if (nilaiN > 0 && nilaiN < digitPassword) {
+    //         check = true;
+    //     } else {
+    //         system("cls");
+    //         cout << "Tidak valid." << endl;
+    //     }
+    // }
 
-    while (!check) {
-        cout << "Nilai n [ 0 < digit < " << digitPassword << " ] : ";
-        cin >> nilaiN;
-        if (nilaiN > 0 && nilaiN < digitPassword) {
-            check = true;
-        } else {
-            system("cls");
-            cout << "Tidak valid." << endl;
-        }
-    }
-
-    char kunci;
-    cout << "Karakter kunci            : ";
-    cin >> kunci;
+    char kunci = '#';
+    // char kunci;
+    // cout << "Karakter kunci            : ";
+    // cin >> kunci;
+    
     push(kunci);
 
-    // traversing
+    // traversing menetapkan sejumlah n node yang nantinya akan disisipkan ke depan
     cur = head;
     while (counter != abs(digitPassword - nilaiN)) {
         cur = cur->next;
@@ -179,8 +181,9 @@ int main() {
         }
         valid = false;
     }
-    // cout << passwordSebelum << endl;
-    // cout << passwordSesudah << endl;
+
+    // cout << "Sebelum enkripsi: " << passwordSebelum << endl;
+    // cout << "Sesudah enkripsi: " << passwordSesudah << endl;
 
     return 0;
 }

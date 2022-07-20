@@ -22,7 +22,7 @@ struct Pasien {
 };
 
 // maksimal
-int maksimal = 50;
+int maksimal = 5;
 
 // pointer
 Pasien *head, *tail, *cur, *del, *newNode;
@@ -31,7 +31,7 @@ Pasien *head, *tail, *cur, *del, *newNode;
 int nomorUrutCounter = 0;
 
 // rata-rata waktu pemeriksaan
-int meanWaktuPemeriksaan = 20;
+int meanWaktuPemeriksaan = 15;
 
 // border menu
 void tampilanMenu() {
@@ -64,7 +64,7 @@ void tampilanMenu() {
 // konfirmasi
 bool konfirmasiKeluar() {
     system("cls");
-    
+
     bool hasil;
     string input;
 
@@ -154,22 +154,27 @@ void enqueue() {
         cout << setfill('-') << setw(ruasTabelEnqueue[0] + ruasTabelEnqueue[1])
              << left << "+-"
              << "+\n";
+        //  nama
         cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
              << "Nama"
              << "| " << left << setw(ruasTabelEnqueue[1] - 2) << newNode->nama
              << "|\n";
+        //  id
         cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
              << "Nomor ID"
              << "| " << left << setw(ruasTabelEnqueue[1] - 2) << newNode->id
              << "|\n";
+        //  nomor urut
         cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
              << "Nomor Urut"
              << "| " << left << setw(ruasTabelEnqueue[1] - 2)
              << newNode->nomorUrut << "|\n";
+        //  waktu kedatangan
         cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
              << "Waktu Kedatangan"
              << "| " << left << setw(ruasTabelEnqueue[1] - 2)
              << newNode->waktuKedatangan << "|\n";
+        //  estimasi tunggu
         cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
              << "Estimasi Tunggu"
              << "| " << left << setw(ruasTabelEnqueue[1] - 2)
