@@ -131,7 +131,7 @@ void enkripsi(string data) {
     
     push(kunci);
 
-    // traversing menetapkan sejumlah n node yang nantinya akan disisipkan ke depan
+    // traversing menetapkan letak node yang hubungannya akan di putus
     cur = head;
     while (counter != abs(digitPassword - nilaiN)) {
         cur = cur->next;
