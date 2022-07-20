@@ -140,7 +140,7 @@ void enqueue() {
             tail = newNode;
         }
 
-        int ruasTabelEnqueue[] = {19, 28};
+        int ruasTabelEnqueue[] = {26, 28};
 
         // pencetakan kartu antrian
         system("cls");
@@ -176,7 +176,7 @@ void enqueue() {
              << newNode->waktuKedatangan << "|\n";
         //  estimasi tunggu
         cout << setfill(' ') << "| " << left << setw(ruasTabelEnqueue[0] - 2)
-             << "Estimasi Tunggu"
+             << "Estimasi Tunggu (menit)"
              << "| " << left << setw(ruasTabelEnqueue[1] - 2)
              << (count() * meanWaktuPemeriksaan) - meanWaktuPemeriksaan
              << "|\n";
@@ -207,14 +207,17 @@ void dequeue() {
         cout << setfill('-') << setw(ruasTabelDequeue[0]) << left << "+-"
              << setw(ruasTabelDequeue[1]) << left << "+-"
              << "+\n";
+        //  nama
         cout << setfill(' ') << "| " << left << setw(ruasTabelDequeue[0] - 2)
              << "Nama"
              << "| " << left << setw(ruasTabelDequeue[1] - 2) << del->nama
              << "|\n";
+        //  id
         cout << setfill(' ') << "| " << left << setw(ruasTabelDequeue[0] - 2)
              << "Nomor ID"
              << "| " << left << setw(ruasTabelDequeue[1] - 2) << del->id
              << "|\n";
+        //  nomor urut
         cout << setfill(' ') << "| " << left << setw(ruasTabelDequeue[0] - 2)
              << "Nomor Urut"
              << "| " << left << setw(ruasTabelDequeue[1] - 2) << del->nomorUrut
