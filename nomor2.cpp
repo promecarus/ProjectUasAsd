@@ -41,7 +41,7 @@ void push(char data) {
     }
 }
 
-// pop
+// remove
 void remove() {
     for (int i = 0; i < 7; i++) {
         del = head;
